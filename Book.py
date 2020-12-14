@@ -76,8 +76,9 @@ class WuxiaWorld(Book):
             return {"name": current_chapter_name, "content": ""}
 
         # Updating next chapter
-        self.next_chapter = self.toc_chapter_list.pop(0)
-        self.chapter_index = self.chapter_index+1
+        self.chapter_index = self.chapter_index + 1
+
+        self.next_chapter = self.toc_chapter_list.pop(0) if len(self.toc_chapter_list) > 0 else None
 
         return {"title": current_chapter_name, "content": chapter_data}
 

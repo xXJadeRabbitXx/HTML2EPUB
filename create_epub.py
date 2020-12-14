@@ -20,11 +20,12 @@ def create_epub(source):
     """
     nav_map = ElementTree.Element("navMap")
 
-    print("Total chapters: " + str(len(source.toc_chapter_list)+1))
+    total_chapters = len(source.toc_chapter_list) + 1
+    print("Total chapters: " + str(total_chapters))
     print("Processing chapters ...")
 
     # creating chapters
-    while len(source.toc_chapter_list) > 0:
+    for i in range(total_chapters):
         current_chapter = source.chapter_index
         data = source.get_current_chapter_and_increment()
 

@@ -39,9 +39,6 @@ class WuxiaWorld(Book):
             print(table_of_contents_request.status_code)
             raise RuntimeError("problem fetching table of contents: " + table_of_contents_url)
 
-        first_chapter_url = table_of_contents_html.body.find_all(class_="chapter-item")[0].find("a")["href"]
-        first_chapter_name = table_of_contents_html.body.find_all(class_="chapter-item")[0].find("a").text.strip()
-
         self.title = table_of_contents_html.title.text
         self.toc_chapter_list = self.__find_all_chapter_url_from_toc(table_of_contents_html)
         self.next_chapter = self.toc_chapter_list.pop(0)
@@ -86,11 +83,8 @@ class WuxiaWorld(Book):
 
     @staticmethod
     def __get_chapter_data(chapter_html_data):
-        chapter_content = chapter_html_data.body.find("div", {"id": "chapter-content"}).find_all("p");
+        chapter_content = chapter_html_data.body.find("div", {"id": "chapter-content"}).find_all("p")
 
-        clean_content = []
-
-        for line in chapter_content:
-            clean_content.append("<p>" + line.text.strip() + "</p>")
+        clean_content = [line.text.strip() for line in chapter_content]
 
         return clean_content

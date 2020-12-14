@@ -1,15 +1,11 @@
 # Instructions
 
-- create book given wuxiaworld tabel of contents link
-  
-  `book = WuxiaWorld("https://www.wuxiaworld.com/novel/the-charm-of-soul-pets")`
-    
-- save to epub format
-  
-    `create_epub(book)`
+Call main function given the associated Wuxiaworld table of contents link 
 
-# Returns
+- `python3 main.py "https://www.wuxiaworld.com/novel/above-your-head"`
+
+# Post Processing
 
 We will get 2 files, `book.epub` and `navMap.txt`
 
-- use a epub editor file and replace the `<navmap>` tag inside `book.epub/EPUB/toc.ncx` with the contents of navMap.txt
+- use an epub editor and replace the `<navmap>` tag inside `book.epub/EPUB/toc.ncx` with the contents of `navMap.txt`
